@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "apollo-boost": "^0.1.14",
+    "apollo-cache-inmemory": "^1.2.8",
+    "apollo-client": "^2.4.0",
+    "apollo-link": "^1.2.2",
+    "apollo-link-http": "^1.5.4",
+    "babel-preset-vue": "^2.0.2",
+    "graphbrainz": "^8.0.3",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "normalize.css": "^8.0.0",
+    "parcel-bundler": "^1.9.7",
+    "path": "^0.12.7",
+    "vue": "^2.5.17",
+    "vue-apollo": "^3.0.0-beta.19",
+    "vue-hot-reload-api": "^2.3.0",
+    "vue-router": "^3.0.1"
+  },
+  "scripts": {
+    "graphql": "graphbrainz",
+    "dev": "graphbrainz & parcel index.html",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.2.0",
+    "prettier": "^1.14.2",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
