@@ -52,6 +52,7 @@
               </li>
             </ul>
           </section>
+          <LoadingIndicator v-else />
         </template>
       </ApolloQuery>
     </div>
@@ -59,10 +60,14 @@
 </template>
 
 <script>
-import { SEARCH_ARTISTS } from "./queries.js";
+import { SEARCH_ARTISTS } from "../queries.js";
+import LoadingIndicator from "./LoadingIndicator";
 
 export default {
   name: "Search",
+  components: {
+    LoadingIndicator
+  },
   data() {
     return {
       keywords: "",

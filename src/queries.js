@@ -4,6 +4,7 @@ export const ARTIST_DETAILS = mbid => gql`
   query {
     lookup {
       artist(mbid: "${mbid}") {
+        id
         name
         area {
           name
@@ -33,6 +34,7 @@ export const RELEASE_GROUP_DETAILS = mbid => gql`
   query {
     lookup {
       releaseGroup(mbid: "${mbid}") {
+        id
         mbid
         title
         artistCredits {
@@ -71,6 +73,7 @@ const fragments = {
       edges {
         cursor
         node {
+          id
           mbid
           name
           country
@@ -93,6 +96,7 @@ const fragments = {
       edges {
         cursor
         node {
+          id
           mbid
           title
           artistCredits {
@@ -117,6 +121,7 @@ const fragments = {
       edges {
         cursor
         node {
+          id
           mbid
           name
           type

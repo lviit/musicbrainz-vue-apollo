@@ -1,11 +1,12 @@
 <template>
   <ApolloQuery 
-    :query="query" 
+    :query="query"
     class="container">
     <template slot-scope="{ result: { loading, error, data } }">
       <section class="main">
-        <LoadingIndicator v-if="loading" />
-        <span v-else-if="error">An error occured: {{ error }}</span>
+        <!-- @TODO: why loading state is not working
+          <LoadingIndicator v-if="loading" /> -->
+        <span v-if="error">An error occured: {{ error }}</span>
         <section v-if="data">
           <h1>{{ data.lookup.artist.name }}</h1>
           <div class="artist-info">
@@ -35,20 +36,24 @@
             </ul>
           </section>
         </section>
+        <LoadingIndicator v-else />
       </section>
       <aside 
-        v-if="data" 
         class="side">
-        <img 
+        <img
+          v-if="data" 
           :src="data.lookup.artist.theAudioDB.thumbnail" 
           class="black-n-white" >
+        <div
+          v-else
+          class="main-image-placeholder" />
       </aside>
     </template>
   </ApolloQuery>
 </template>
 
 <script>
-import { ARTIST_DETAILS } from "./queries.js";
+import { ARTIST_DETAILS } from "../queries.js";
 import LoadingIndicator from "./LoadingIndicator";
 
 export default {
@@ -99,5 +104,10 @@ export default {
   text-transform: uppercase;
   margin: 20px 0;
   line-height: 1.5;
+}
+.main-image-placeholder {
+  max-width: 420px;
+  height: 420px;
+  color: gray;
 }
 </style>

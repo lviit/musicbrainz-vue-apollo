@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 .spinner {
-  margin: 100px auto;
+  margin: 170px auto;
   width: 80px;
   height: 80px;
   text-align: center;

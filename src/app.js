@@ -1,14 +1,12 @@
 import Vue from "vue";
-import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
 import VueApollo from "vue-apollo";
 import App from "./App.vue";
 import VueRouter from "vue-router";
+import ApolloClient from "apollo-boost";
 
-import Artist from "./Artist";
-import Release from "./Release";
-import Search from "./Search";
+import Artist from "./components/Artist";
+import Release from "./components/Release";
+import Search from "./components/Search";
 
 const geomanistRegular = new FontFace(
   "Geomanist Regular",
@@ -22,16 +20,11 @@ const geomanistRegular = new FontFace(
 document.fonts.add(geomanistRegular);
 geomanistRegular.load();
 
-const apolloClient = new ApolloClient({
-  link: new HttpLink({ uri: "http://localhost:3000" }),
-  cache: new InMemoryCache(),
-  connectToDevTools: true
-});
-
 Vue.use(VueApollo);
 
+const client = new ApolloClient({ uri: "http://localhost:3000" });
 const apolloProvider = new VueApollo({
-  defaultClient: apolloClient
+  defaultClient: client
 });
 
 const router = new VueRouter({

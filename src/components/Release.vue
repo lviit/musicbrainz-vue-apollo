@@ -15,6 +15,7 @@
           </div>
           <p v-if="data.lookup.releaseGroup.theAudioDB" >{{ data.lookup.releaseGroup.theAudioDB.description }}</p>
         </section>
+        <LoadingIndicator v-else />
       </section>
       <aside 
         v-if="data" 
@@ -26,10 +27,14 @@
 </template>
 
 <script>
-import { RELEASE_GROUP_DETAILS } from "./queries.js";
+import { RELEASE_GROUP_DETAILS } from "../queries.js";
+import LoadingIndicator from "./LoadingIndicator";
 
 export default {
   name: "ReleaseDetails",
+  components: {
+    LoadingIndicator
+  },
   data() {
     return {
       query: RELEASE_GROUP_DETAILS(this.$route.params.releaseId)
