@@ -1,23 +1,5 @@
 import { gql } from "apollo-boost";
 
-export const NIRVANA_ALBUM_SINGLES = gql`
-  query {
-    lookup {
-      artist(mbid: "5b11f4ce-a62d-471e-81fc-a69a8278c7da") {
-        name
-        releaseGroups(type: ALBUM) {
-          edges {
-            node {
-              title
-              firstReleaseDate
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const ARTIST_DETAILS = mbid => gql`
   query {
     lookup {
@@ -80,17 +62,6 @@ export const SEARCH_ARTISTS = keywords => gql`
   ${fragments.artists}
 `;
 
-export const SEARCH_LABELS = keywords => gql`
-  query {
-    search {
-      labels(query: "${keywords}", first: 20) {
-        ...labelResults
-      }
-    }
-  }
-  ${fragments.labels}
-`;
-
 const fragments = {
   artists: gql`
     fragment artistResults on ArtistConnection {
@@ -129,10 +100,10 @@ const fragments = {
           }
           firstReleaseDate
           theAudioDB {
-            description           
+            description
           }
           coverArtArchive {
-            front(size:SMALL)
+            front(size: SMALL)
           }
         }
       }
@@ -155,5 +126,5 @@ const fragments = {
         }
       }
     }
-  `,
+  `
 };

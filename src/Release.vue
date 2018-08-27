@@ -1,5 +1,7 @@
 <template>
-  <ApolloQuery class="container" :query="query">
+  <ApolloQuery 
+    :query="query" 
+    class="container">
     <template slot-scope="{ result: { loading, error, data } }">
       <section class="main">
         <span v-if="loading">Loading...</span>
@@ -14,8 +16,10 @@
           <p v-if="data.lookup.releaseGroup.theAudioDB" >{{ data.lookup.releaseGroup.theAudioDB.description }}</p>
         </section>
       </section>
-      <aside v-if="data" class="side">
-        <img :src="data.lookup.releaseGroup.coverArtArchive.front" />
+      <aside 
+        v-if="data" 
+        class="side">
+        <img :src="data.lookup.releaseGroup.coverArtArchive.front" >
       </aside>
     </template>
   </ApolloQuery>
@@ -25,24 +29,24 @@
 import { RELEASE_GROUP_DETAILS } from "./queries.js";
 
 export default {
-  name: "releaseDetails",
-  watch: {
-    '$route' (to, from) {
-      console.log(to);
-      // react to route changes...
-    }
-  },
+  name: "ReleaseDetails",
   data() {
     return {
       query: RELEASE_GROUP_DETAILS(this.$route.params.releaseId)
     };
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to);
+      // react to route changes...
+    }
   }
 };
 </script>
 
 <style scoped>
-  .release-info {
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
+.release-info {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
 </style>
