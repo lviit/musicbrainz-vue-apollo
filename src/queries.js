@@ -83,6 +83,7 @@ const fragments = {
           }
           theAudioDB {
             thumbnail
+            genre
           }
         }
       }
@@ -102,6 +103,7 @@ const fragments = {
           artistCredits {
             name
           }
+          primaryType
           firstReleaseDate
           theAudioDB {
             description

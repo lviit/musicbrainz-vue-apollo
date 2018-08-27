@@ -22,17 +22,15 @@
           <section v-if="data.lookup.artist.releaseGroups">
             <h2>Albums</h2>
             <ul class="releases">
-              <li 
+              <ReleaseTeaser
                 v-for="release in data.lookup.artist.releaseGroups.edges" 
-                :key="release.node.mbid" 
-                class="release" >
-                <router-link 
-                  :to="{ name: 'releaseDetails', params: { releaseId: release.node.mbid }}" 
-                  class="release__title">{{ release.node.title }} ({{ release.node.firstReleaseDate }})</router-link>
-                <div class="release__cover">
-                  <img :src="release.node.coverArtArchive.front" >
-                </div>
-              </li>
+                :key="release.node.mbid"
+                :mbid="release.node.mbid"
+                :title="release.node.title"
+                :date="release.node.firstReleaseDate"
+                :type="release.node.primaryType"
+                :image="release.node.coverArtArchive.front"
+              />
             </ul>
           </section>
         </section>
@@ -55,50 +53,23 @@
 <script>
 import { ARTIST_DETAILS } from "../queries.js";
 import LoadingIndicator from "./LoadingIndicator";
+import ReleaseTeaser from "./ReleaseTeaser";
 
 export default {
   name: "ArtistDetails",
   components: {
-    LoadingIndicator
+    LoadingIndicator,
+    ReleaseTeaser
   },
   data() {
     return {
       query: ARTIST_DETAILS(this.$route.params.artistId)
     };
-  },
-  computed: {
-    // @TODO: fix
-    trimmedBio: function() {}
-  },
-  watch: {
-    $route(to, from) {
-      console.log(to);
-      // react to route changes...
-    }
   }
 };
 </script>
 
 <style scoped>
-.releases {
-}
-.release {
-  display: flex;
-  height: 100px;
-  justify-content: space-between;
-}
-.release__title {
-  text-transform: uppercase;
-  font-size: 18px;
-  letter-spacing: 3px;
-  text-decoration: none;
-  padding: 20px 0;
-  border-bottom: 2px solid white;
-  flex-grow: 1;
-}
-.release__cover {
-  width: 100px;
-}
 .artist-info {
   letter-spacing: 3px;
   text-transform: uppercase;

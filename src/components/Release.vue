@@ -39,12 +39,6 @@ export default {
     return {
       query: RELEASE_GROUP_DETAILS(this.$route.params.releaseId)
     };
-  },
-  watch: {
-    $route(to, from) {
-      console.log(to);
-      // react to route changes...
-    }
   }
 };
 </script>

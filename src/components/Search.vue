@@ -37,19 +37,15 @@
 
           <section v-if="data">
             <ul class="results">
-              <li 
+              <ArtistTeaser
                 v-for="artist in data.search.artists.edges" 
-                :key="artist.node.mbid" 
-                class="result" >
-                <router-link 
-                  :to="{ name: 'artistDetails', params: { artistId: artist.node.mbid }}" 
-                  class="result__title">{{ artist.node.name }}</router-link>
-                <div class="result__cover">
-                  <img 
-                    v-if="artist.node.theAudioDB" 
-                    :src="artist.node.theAudioDB.thumbnail" >
-                </div>
-              </li>
+                :key="artist.node.mbid"
+                :mbid="artist.node.mbid"
+                :name="artist.node.name"
+                :begin="artist.node.lifeSpan.begin"
+                :end="artist.node.lifeSpan.end"
+                :genre="artist.node.theAudioDB && artist.node.theAudioDB.genre"
+                :image="artist.node.theAudioDB && artist.node.theAudioDB.thumbnail" />
             </ul>
           </section>
           <LoadingIndicator v-else />
@@ -62,11 +58,13 @@
 <script>
 import { SEARCH_ARTISTS } from "../queries.js";
 import LoadingIndicator from "./LoadingIndicator";
+import ArtistTeaser from "./ArtistTeaser";
 
 export default {
   name: "Search",
   components: {
-    LoadingIndicator
+    LoadingIndicator,
+    ArtistTeaser
   },
   data() {
     return {
@@ -128,22 +126,5 @@ export default {
 }
 .results {
   margin-top: 30px;
-}
-.result {
-  display: flex;
-  height: 100px;
-  justify-content: space-between;
-}
-.result__title {
-  text-transform: uppercase;
-  font-size: 18px;
-  letter-spacing: 3px;
-  text-decoration: none;
-  padding: 20px 0;
-  border-bottom: 2px solid white;
-  flex-grow: 1;
-}
-.result__cover {
-  width: 100px;
 }
 </style>
