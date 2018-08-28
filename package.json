@@ -8,12 +8,12 @@
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-vue": "^4.7.1",
+    "express": "^4.16.3",
     "graphbrainz": "^8.0.3",
     "graphql": "^0.13.2",
     "normalize.css": "^8.0.0",
     "parcel-bundler": "^1.9.7",
     "path": "^0.12.7",
-    "postcss-modules": "^1.3.2",
     "vue": "^2.5.17",
     "vue-apollo": "^3.0.0-beta.19",
     "vue-hot-reload-api": "^2.3.0",
@@ -23,6 +23,8 @@
     "graphql": "graphbrainz",
     "dev": "graphbrainz & parcel index.html",
     "build": "parcel build",
+    "postinstall": "parcel build",
+    "start": "graphbrainz & node server.js",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix"
   },
@@ -30,5 +32,8 @@
     "@vue/component-compiler-utils": "^2.2.0",
     "prettier": "^1.14.2",
     "vue-template-compiler": "^2.5.17"
+  },
+  "engines": {
+    "node": "8.11.4"
   }
 }
