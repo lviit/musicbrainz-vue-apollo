@@ -7,20 +7,22 @@
         <span v-if="loading">Loading...</span>
         <span v-else-if="error">An error occured: {{ error }}</span>
         <section v-if="data">
-          <h1>{{ data.lookup.releaseGroup.title }}</h1>
-          <div class="release-info">
+          <h1 class="title-large">{{ data.lookup.releaseGroup.title }}</h1>
+          <div class="text-info">
             <span v-if="data.lookup.releaseGroup.primaryType">{{ data.lookup.releaseGroup.primaryType }} by </span>
             <span v-if="data.lookup.releaseGroup.artistCredits[0].name">{{ data.lookup.releaseGroup.artistCredits[0].name }} </span>
             <span v-if="data.lookup.releaseGroup.firstReleaseDate"> • Released {{ data.lookup.releaseGroup.firstReleaseDate }}</span>
           </div>
-          <p v-if="data.lookup.releaseGroup.theAudioDB" >{{ data.lookup.releaseGroup.theAudioDB.description }}</p>
+          <p 
+            v-if="data.lookup.releaseGroup.theAudioDB"
+            class="text-body" >{{ data.lookup.releaseGroup.theAudioDB.description }}</p>
         </section>
         <LoadingIndicator v-else />
       </section>
       <aside 
         v-if="data" 
         class="side">
-        <img :src="data.lookup.releaseGroup.coverArtArchive.front" >
+        <img :src="data.lookup.releaseGroup.coverArtArchive ? data.lookup.releaseGroup.coverArtArchive.front : 'https://via.placeholder.com/420x420'" >
       </aside>
     </template>
   </ApolloQuery>
@@ -42,10 +44,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.release-info {
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-</style>

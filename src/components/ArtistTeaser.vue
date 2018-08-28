@@ -52,10 +52,10 @@ export default {
     }
   },
   computed: {
-    formattedBegin: function() {
+    formattedBegin() {
       return format(this.begin, "YYYY");
     },
-    formattedEnd: function() {
+    formattedEnd() {
       return format(this.end, "YYYY");
     }
   }

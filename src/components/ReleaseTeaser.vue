@@ -47,7 +47,7 @@ export default {
     }
   },
   computed: {
-    formattedDate: function() {
+    formattedDate() {
       return format(this.date, "YYYY");
     }
   }

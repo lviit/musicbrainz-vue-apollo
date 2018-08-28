@@ -1,24 +1,20 @@
 <template>
   <div class="container">
-    <div class="search-page">
-      <p class="search-page__description"> MusicBrainz is an open music encyclopedia that collects music metadata and makes it available to the public. This app uses the Musicbrainz API. GraphQL schema and server provided by graphbrainz, app build using vue, apollo, and parcel along with a bunch of other neat stuff.</p>
+    <div class="inner-container">
+      <p class="description text-body"> MusicBrainz is an open music encyclopedia that collects music metadata and makes it available to the public. This app uses the Musicbrainz API. GraphQL schema and server provided by graphbrainz, app build using vue, apollo, and parcel along with a bunch of other neat stuff.</p>
       <form 
         class="search" 
+        autocomplete="off"
         @submit.prevent="onSubmit">
         <input
           id="keywords"
           v-model="keywords"
-          class="search__keywords"
+          class="keywords"
           type="text"
           placeholder="search for artist"
         >
-        <input
-          class="search__submit"
-          type="submit"
-          value="search"
-        >
         <svg 
-          class="search__icon" 
+          class="icon" 
           xmlns="http://www.w3.org/2000/svg" 
           width="20" 
           height="20" 
@@ -45,7 +41,7 @@
                 :begin="artist.node.lifeSpan.begin"
                 :end="artist.node.lifeSpan.end"
                 :genre="artist.node.theAudioDB && artist.node.theAudioDB.genre"
-                :image="artist.node.theAudioDB && artist.node.theAudioDB.thumbnail" />
+                :image="artist.node.theAudioDB ? artist.node.theAudioDB.thumbnail : undefined" />
             </ul>
           </section>
           <LoadingIndicator v-else />
@@ -81,24 +77,24 @@ export default {
 </script>
 
 <style scoped>
-.search-page {
+.inner-container {
   display: flex;
   flex-direction: column;
   flex: 0 0 100%;
   align-items: center;
 }
-.search-page__description {
+.description {
   text-align: center;
   max-width: 750px;
 }
 .search {
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-.search__keywords {
+.keywords {
+  padding: 10px 20px;
   background: black;
   border: none;
   border-bottom: 3px solid white;
@@ -106,20 +102,11 @@ export default {
   letter-spacing: 2px;
   color: white;
 }
-.search__submit {
-  font-size: 0;
-  background-color: transparent;
-  position: relative;
-  right: 35px;
-  width: 25px;
-  height: 25px;
-  border: none;
-}
-.search__icon {
+.icon {
   height: 25px;
   width: 25px;
-  position: relative;
-  right: 60px;
+  position: absolute;
+  right: 20px;
 }
 ::placeholder {
   color: white;

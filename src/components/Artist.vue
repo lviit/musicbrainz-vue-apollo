@@ -8,20 +8,20 @@
           <LoadingIndicator v-if="loading" /> -->
         <span v-if="error">An error occured: {{ error }}</span>
         <section v-if="data">
-          <h1>{{ data.lookup.artist.name }}</h1>
-          <div class="artist-info">
+          <h1 class="title-large">{{ data.lookup.artist.name }}</h1>
+          <div class="text-info artist-info">
             <span v-if="data.lookup.artist.theAudioDB">{{ data.lookup.artist.theAudioDB.genre }} • </span>
             <span v-if="data.lookup.artist.beginArea">{{ data.lookup.artist.beginArea.name }}, </span>
             <span v-if="data.lookup.artist.area">{{ data.lookup.artist.area.name }} </span>
             <span v-if="data.lookup.artist.lifeSpan.begin"> • Years active {{ data.lookup.artist.lifeSpan.begin }} - {{ data.lookup.artist.lifeSpan.end || 'present' }}</span>
           </div>
-          <details>
-            <summary>{{ `${data.lookup.artist.theAudioDB.biography.slice(0, 400)}...` }}</summary>
+          <details class="text-body">
+            <summary class="text-teaser">{{ `${data.lookup.artist.theAudioDB.biography.slice(0, 400)}...` }}</summary>
             {{ data.lookup.artist.theAudioDB.biography.slice(200) }}
           </details>
           <section v-if="data.lookup.artist.releaseGroups">
-            <h2>Albums</h2>
-            <ul class="releases">
+            <h2 class="title-small">Albums</h2>
+            <ul>
               <ReleaseTeaser
                 v-for="release in data.lookup.artist.releaseGroups.edges" 
                 :key="release.node.mbid"
@@ -29,7 +29,7 @@
                 :title="release.node.title"
                 :date="release.node.firstReleaseDate"
                 :type="release.node.primaryType"
-                :image="release.node.coverArtArchive.front"
+                :image="release.node.coverArtArchive.front ? release.node.coverArtArchive.front : undefined"
               />
             </ul>
           </section>
@@ -40,11 +40,8 @@
         class="side">
         <img
           v-if="data" 
-          :src="data.lookup.artist.theAudioDB.thumbnail" 
+          :src="data.lookup.artist.theAudioDB ? data.lookup.artist.theAudioDB.thumbnail : 'https://via.placeholder.com/420x420'" 
           class="black-n-white" >
-        <div
-          v-else
-          class="main-image-placeholder" />
       </aside>
     </template>
   </ApolloQuery>
@@ -71,14 +68,9 @@ export default {
 
 <style scoped>
 .artist-info {
-  letter-spacing: 3px;
-  text-transform: uppercase;
   margin: 20px 0;
-  line-height: 1.5;
 }
-.main-image-placeholder {
-  max-width: 420px;
-  height: 420px;
-  color: gray;
+.text-teaser {
+  margin-bottom: 20px;
 }
 </style>
