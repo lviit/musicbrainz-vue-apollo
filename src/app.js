@@ -22,7 +22,7 @@ geomanistRegular.load();
 
 Vue.use(VueApollo);
 
-const client = new ApolloClient({ uri: "http://localhost:3000" });
+const client = new ApolloClient({ uri: "/api" });
 const apolloProvider = new VueApollo({
   defaultClient: client
 });
