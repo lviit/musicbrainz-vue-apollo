@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Geomanist Regular";
+  src: url("./assets/fonts/geomanist-regular-webfont.woff2") format("woff2");
+}
+
 body {
   font-family: "Geomanist Regular";
   background: black;

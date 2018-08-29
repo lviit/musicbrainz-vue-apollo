@@ -22,10 +22,11 @@
     "vue-router": "^3.0.1"
   },
   "scripts": {
-    "dev": "npm start & parcel index.html",
-    "build": "parcel build",
-    "postinstall": "parcel build",
+    "dev": "yarn start & parcel index.html",
+    "build": "parcel build index.html",
+    "postinstall": "yarn build",
     "start": "babel-node server.js",
+    "clean": "rm -rf dist && mkdir dist",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix"
   },

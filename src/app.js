@@ -8,18 +8,6 @@ import Artist from "./components/Artist";
 import Release from "./components/Release";
 import Search from "./components/Search";
 
-const geomanistRegular = new FontFace(
-  "Geomanist Regular",
-  "url(./fonts/geomanist-regular-webfont.woff2)",
-  {
-    style: "normal",
-    weight: "400"
-  }
-);
-
-document.fonts.add(geomanistRegular);
-geomanistRegular.load();
-
 Vue.use(VueApollo);
 
 const client = new ApolloClient({ uri: "/api" });
