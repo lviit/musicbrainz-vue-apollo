@@ -22,8 +22,8 @@
     "vue-router": "^3.0.1"
   },
   "scripts": {
-    "dev": "yarn start & parcel index.html",
-    "build": "parcel build index.html",
+    "dev": "yarn start & parcel watch index.html",
+    "build": "parcel build index.html --no-minify",
     "postinstall": "yarn build",
     "start": "babel-node server.js",
     "clean": "rm -rf dist && mkdir dist",
