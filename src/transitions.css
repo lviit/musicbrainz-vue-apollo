@@ -1,0 +1,45 @@
+.main h1 {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(.28,1.18,1,.97), opacity 0.2s ease-in;
+}
+
+.main.data-ready h1 {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.transition-leave-to .main h1 {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+
+
+
+.transition-enter-active h1 {
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(1,-0.06,1,.97);
+}
+
+.transition-enter-to h1 {
+  transform: translateX(0);
+}
+
+.transition-enter-active {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.transition-enter-to {
+  opacity: 1;
+}
+
+.transition-leave-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.transition-leave-to {
+  opacity: 0;
+}

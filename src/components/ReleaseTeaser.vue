@@ -2,7 +2,7 @@
   <li class="release" >
     <div class="info">
       <router-link 
-        :to="{ name: 'releaseDetails', params: { releaseId: mbid }}" 
+        :to="{ name: 'release', params: { releaseId: mbid }}" 
         class="title">{{ title }}
       </router-link>
       <div class="details">

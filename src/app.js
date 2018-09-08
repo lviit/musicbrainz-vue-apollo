@@ -15,13 +15,17 @@ const apolloProvider = new VueApollo({
   defaultClient: client
 });
 
-const router = new VueRouter({
-  routes: [
-    { name: "home", path: "/", component: Search },
-    { name: "artistDetails", path: "/artist/:artistId", component: Artist },
-    { name: "releaseDetails", path: "/release/:releaseId", component: Release }
-  ]
-});
+export const routes = [
+  { name: "Search", path: "/", component: Search },
+  { name: "artist", path: "/artist/:artistId", component: Artist },
+  {
+    name: "release",
+    path: "/artist/:artistId/release/:releaseId",
+    component: Release
+  }
+];
+
+const router = new VueRouter({ routes });
 
 Vue.use(VueRouter);
 

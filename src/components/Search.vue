@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="inner-container">
       <p class="description text-body"> MusicBrainz is an open music encyclopedia that collects music metadata and makes it available to the public. This app uses the Musicbrainz API. GraphQL schema and server provided by graphbrainz, app build using vue, apollo, and parcel along with a bunch of other neat stuff.</p>
       <form 

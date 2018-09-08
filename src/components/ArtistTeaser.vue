@@ -2,7 +2,7 @@
   <li class="artist" >
     <div class="info">
       <router-link 
-        :to="{ name: 'artistDetails', params: { artistId: mbid }}" 
+        :to="{ name: 'artist', params: { artistId: mbid }}" 
         class="name">{{ name }}
       </router-link>
       <div class="details">

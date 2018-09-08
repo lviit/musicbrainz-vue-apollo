@@ -1,5 +1,20 @@
 import { gql } from "apollo-boost";
 
+export const BREADCRUMB = params => gql`
+  query {
+    lookup {
+      artist(mbid: "${params.artistId}") {
+        id
+        name
+      }
+      releaseGroup(mbid: "${params.releaseId}") {
+        id
+        title
+      }
+    }
+  }
+`;
+
 export const ARTIST_DETAILS = mbid => gql`
   query {
     lookup {
