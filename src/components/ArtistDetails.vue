@@ -7,10 +7,19 @@
       <span>{{ artist.area.name }} </span>
       <span> • Years active: {{ formattedBegin }} - {{ formattedEnd || 'present' }}</span>
     </div>
-    <details class="text-body">
-      <summary class="text-teaser">{{ `${artist.theAudioDB.biography.slice(0, 400)}...` }}</summary>
-      {{ artist.theAudioDB.biography.slice(400) }}
-    </details>
+    <div
+      v-if="state.showFullBiography"
+      class="text-body">
+      {{ artist.theAudioDB.biography }}
+    </div>
+    <div v-else>
+      <div class="text-body">
+        {{ biographyTeaser }}
+      </div>
+      <button
+        class="readmore"
+        @click="readmore">Read more</button>
+    </div>
   </section>
 
 </template>
@@ -44,12 +53,25 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      state: { showFullBiography: false }
+    };
+  },
   computed: {
     formattedBegin() {
       return format(this.artist.lifeSpan.begin, "YYYY");
     },
     formattedEnd() {
       return format(this.artist.lifeSpan.end, "YYYY");
+    },
+    biographyTeaser() {
+      return this.artist.theAudioDB.biography.slice(0, 400);
+    }
+  },
+  methods: {
+    readmore: function() {
+      this.state.showFullBiography = true;
     }
   }
 };
@@ -61,5 +83,16 @@ export default {
 }
 .text-teaser {
   margin-bottom: 20px;
+}
+.readmore {
+  background: transparent;
+  color: white;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  font-size: 20px;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  border: 2px solid white;
+  cursor: pointer;
 }
 </style>
